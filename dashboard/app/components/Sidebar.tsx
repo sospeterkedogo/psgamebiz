@@ -1,64 +1,61 @@
 import React from "react";
-import { AccessibleButton } from "./AccessibleButton";
+import styles from "./sidebar.module.css";
 
 const menuItems = [
-  { label: "Dashboard", icon: "▦" },
-  { label: "Transaction", icon: "💸" },
-  { label: "Payment", icon: "💳" },
-  { label: "My Card", icon: "👜" },
+  { label: "Dashboard", icon: <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/></svg> },
+  { label: "Transaction", icon: <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M17 1v6h6"/><path d="M7 23v-6H1"/><path d="M20.49 9.51A9 9 0 1 1 12 3v0"/></svg> },
+  { label: "Payment", icon: <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M2 11h20"/></svg> },
+  { label: "My Card", icon: <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg> },
 ];
 
 const preferenceItems = [
-  { label: "Account", icon: "👤" },
-  { label: "Help & Support", icon: "❓" },
-  { label: "Log Out", icon: "↩️" },
+  { label: "Account", icon: <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M5.5 21a8.38 8.38 0 0 1 13 0"/></svg> },
+  { label: "Help & Support", icon: <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 1 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg> },
+  { label: "Log Out", icon: <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M17 16l4-4m0 0l-4-4m4 4H7"/><path d="M3 21V3a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v4"/></svg> },
 ];
 
-export function Sidebar() {
+export function Sidebar({ onLogout }: { onLogout: () => void }) {
   return (
-    <nav aria-label="Sidebar" className="w-72 bg-gradient-to-b from-gray-900 to-gray-800 text-white flex flex-col p-6 bg-opacity-90 backdrop-blur-md">
-      <div className="flex items-center gap-3 mb-8">
-        <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-          <span className="text-indigo-900 font-bold text-xl">S</span>
+    <nav className={styles.sidebar} aria-label="Sidebar">
+      <div className={styles["sidebar-logo"]}>
+        <div className={styles["sidebar-logo-icon"]}> 
+          <span>S</span>
         </div>
-        <span className="font-bold text-xl">Studio Shodwe</span>
+        <span className={styles["sidebar-logo-title"]}>Studio Shodwe</span>
       </div>
-      <div className="bg-pink-600 rounded-xl p-4 mb-8" aria-live="polite">
-        <div className="text-sm">Balance</div>
-        <div className="text-2xl font-bold">$123,456,789</div>
+      <div className={styles["sidebar-balance"]} aria-live="polite">
+        <span style={{ fontSize: 14, fontWeight: 400 }}>Balance</span>
+        <span>$123,456,789</span>
       </div>
-      <div className="mb-4">
-        <div className="font-semibold mb-2">Menu</div>
-        <ul className="space-y-2" role="menu">
+      <div className={styles["sidebar-section"]}>
+        <div className={styles["sidebar-section-title"]}>Menu</div>
+        <hr className={styles["sidebar-divider"]} />
+        <ul className={styles["sidebar-menu"]} role="menu">
           {menuItems.map((item) => (
             <li key={item.label} role="none">
-              <AccessibleButton
-                label={item.label}
-                icon={<span>{item.icon}</span>}
-                className="w-full flex items-center gap-2 cursor-pointer hover:text-cyan-400 px-2 py-2 rounded-lg text-left"
-                tabIndex={0}
-                role="menuitem"
-              >
+              <button className={styles["sidebar-menu-item"]} tabIndex={0} role="menuitem">
+                <span className={styles["sidebar-menu-icon"]}>{item.icon}</span>
                 {item.label}
-              </AccessibleButton>
+              </button>
             </li>
           ))}
         </ul>
       </div>
-      <div className="mt-auto">
-        <div className="font-semibold mb-2">Preference</div>
-        <ul className="space-y-2" role="menu">
+      <div className={styles["sidebar-preference"]}>
+        <div className={styles["sidebar-section-title"]}>Preference</div>
+        <hr className={styles["sidebar-divider"]} />
+        <ul className={styles["sidebar-menu"]} role="menu">
           {preferenceItems.map((item) => (
             <li key={item.label} role="none">
-              <AccessibleButton
-                label={item.label}
-                icon={<span>{item.icon}</span>}
-                className="w-full flex items-center gap-2 cursor-pointer hover:text-cyan-400 px-2 py-2 rounded-lg text-left"
+              <button
+                className={styles["sidebar-menu-item"]}
                 tabIndex={0}
                 role="menuitem"
+                onClick={item.label === "Log Out" ? onLogout : undefined}
               >
+                <span className={styles["sidebar-menu-icon"]}>{item.icon}</span>
                 {item.label}
-              </AccessibleButton>
+              </button>
             </li>
           ))}
         </ul>

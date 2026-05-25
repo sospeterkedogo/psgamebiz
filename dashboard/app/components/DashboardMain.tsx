@@ -2,62 +2,62 @@ import React from "react";
 
 export function DashboardMain() {
   return (
-    <main className="flex-1 p-8 bg-transparent" id="main-content" tabIndex={-1}>
-      <div className="grid grid-cols-3 gap-8">
+    <main style={{ flex: 1, padding: 32, background: 'transparent' }} id="main-content" tabIndex={-1}>
+      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: 32 }}>
         {/* Market Overview Chart Placeholder */}
-        <section className="col-span-2 bg-gray-900 rounded-2xl p-6 text-white" aria-labelledby="market-overview-title">
-          <div className="flex justify-between items-center mb-4">
-            <span id="market-overview-title" className="font-semibold">Market Overview</span>
-            <span className="text-sm">Month</span>
+        <section style={{ gridColumn: 'span 2', background: '#222', borderRadius: 16, padding: 24, color: '#fff' }} aria-labelledby="market-overview-title">
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+            <span id="market-overview-title" style={{ fontWeight: 600 }}>Market Overview</span>
+            <span style={{ fontSize: 14 }}>Month</span>
           </div>
-          <div className="h-48 flex items-center justify-center">
-            <span className="text-gray-400">[Chart]</span>
+          <div style={{ height: 192, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <span style={{ color: '#aaa' }}>[Chart]</span>
           </div>
         </section>
         {/* Transaction List */}
-        <section className="bg-gray-900 rounded-2xl p-6 text-white" aria-labelledby="transaction-title">
-          <div id="transaction-title" className="font-semibold mb-4">Transaction</div>
-          <ul className="space-y-4">
+        <section style={{ background: '#222', borderRadius: 16, padding: 24, color: '#fff' }} aria-labelledby="transaction-title">
+          <div id="transaction-title" style={{ fontWeight: 600, marginBottom: 16 }}>Transaction</div>
+          <ul style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             {[1,2,3,4,5,6].map((i) => (
-              <li key={i} className="flex items-center justify-between bg-gray-800 rounded-lg p-3">
+              <li key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#333', borderRadius: 10, padding: 12 }}>
                 <div>
-                  <div className="font-bold">$123,456,789</div>
-                  <div className="text-xs text-gray-400">Name {i}</div>
+                  <div style={{ fontWeight: 700 }}>$123,456,789</div>
+                  <div style={{ fontSize: 12, color: '#aaa' }}>Name {i}</div>
                 </div>
-                <span className="bg-pink-600 rounded-full p-2" aria-label="View details">➡️</span>
+                <span style={{ background: '#e11d48', borderRadius: 999, padding: 8 }} aria-label="View details">➡️</span>
               </li>
             ))}
           </ul>
         </section>
       </div>
-      <div className="grid grid-cols-3 gap-8 mt-8">
+      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: 32, marginTop: 32 }}>
         {/* My Portfolio */}
-        <section className="col-span-2 bg-gray-900 rounded-2xl p-6 text-white" aria-labelledby="portfolio-title">
-          <div className="flex justify-between items-center mb-4">
-            <span id="portfolio-title" className="font-semibold">My Portfolio</span>
-            <span className="text-2xl" aria-label="More options">⋮</span>
+        <section style={{ gridColumn: 'span 2', background: '#222', borderRadius: 16, padding: 24, color: '#fff' }} aria-labelledby="portfolio-title">
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+            <span id="portfolio-title" style={{ fontWeight: 600 }}>My Portfolio</span>
+            <span style={{ fontSize: 24 }} aria-label="More options">⋮</span>
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
             {[1,2,3,4].map((i) => (
-              <div key={i} className="bg-gray-800 rounded-xl p-4 flex items-center justify-between">
+              <div key={i} style={{ background: '#333', borderRadius: 12, padding: 16, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <div>
-                  <div className="font-bold">$123,456,789</div>
-                  <div className="text-xs text-gray-400">Company {i}</div>
-                  <div className="text-xs text-gray-400">4 Product</div>
+                  <div style={{ fontWeight: 700 }}>$123,456,789</div>
+                  <div style={{ fontSize: 12, color: '#aaa' }}>Company {i}</div>
+                  <div style={{ fontSize: 12, color: '#aaa' }}>4 Product</div>
                 </div>
-                <button className="bg-gray-700 px-4 py-2 rounded-lg text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400">See Detail</button>
+                <button style={{ background: '#444', padding: '8px 16px', borderRadius: 8, fontSize: 14, color: '#fff', border: 'none', cursor: 'pointer' }}>See Detail</button>
               </div>
             ))}
           </div>
         </section>
         {/* Saved Contact */}
-        <section className="bg-gray-900 rounded-2xl p-6 text-white" aria-labelledby="saved-contact-title">
-          <div id="saved-contact-title" className="font-semibold mb-4">Saved Contact</div>
-          <div className="flex gap-3">
+        <section style={{ background: '#222', borderRadius: 16, padding: 24, color: '#fff' }} aria-labelledby="saved-contact-title">
+          <div id="saved-contact-title" style={{ fontWeight: 600, marginBottom: 16 }}>Saved Contact</div>
+          <div style={{ display: 'flex', gap: 12 }}>
             {["Drew","Hanah","Silva","Ketut"].map((name, i) => (
-              <div key={i} className="flex flex-col items-center">
-                <span className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center mb-1" aria-label={`Contact avatar for ${name}`}>👤</span>
-                <span className="text-xs">{name}</span>
+              <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <span style={{ width: 40, height: 40, background: '#444', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 4 }} aria-label={`Contact avatar for ${name}`}>👤</span>
+                <span style={{ fontSize: 12 }}>{name}</span>
               </div>
             ))}
           </div>
