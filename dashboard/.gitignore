@@ -39,3 +39,18 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# package-lock.json
+package-lock.json
+# pnpm-lock.yaml
+yarn.lock
+# testing
+jest.config.js
+playwright.config.ts
+eslint.config.js
+prettier.config.js
+
+# local env files
+.env.local
+.env.development.local
+.env.test.local
