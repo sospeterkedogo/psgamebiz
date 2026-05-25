@@ -26,13 +26,24 @@ export default function ClientPage() {
         {/* Simple overlay for depth */}
         <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.6)' }} />
       </div>
-      <div style={{ display: 'flex', minHeight: '100vh' }} role="presentation">
-        <Sidebar />
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+      <div style={{ display: 'flex', minHeight: '100vh', flexDirection: 'row', flexWrap: 'wrap' }} role="presentation">
+        <Sidebar onLogout={() => setLoggedIn(false)} />
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
           <Topbar />
           <DashboardMain />
         </div>
       </div>
+      <style>{`
+        @media (max-width: 900px) {
+          .sidebar { width: 100vw !important; min-width: 0 !important; }
+          .topbar { flex-direction: column; align-items: flex-start; }
+        }
+        @media (max-width: 600px) {
+          .sidebar { width: 100vw !important; min-width: 0 !important; }
+          .topbar { flex-direction: column; align-items: flex-start; }
+          main { padding: 8px !important; }
+        }
+      `}</style>
     </div>
   );
 }
