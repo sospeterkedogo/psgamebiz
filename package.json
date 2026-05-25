@@ -1,1 +1,6 @@
+{
+	"name": "psgamebiz-root",
+	"private": true,
+	"workspaces": ["dashboard"]
+}
 
