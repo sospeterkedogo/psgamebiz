@@ -14,7 +14,7 @@ const preferenceItems = [
   { label: "Log Out", icon: <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M17 16l4-4m0 0l-4-4m4 4H7"/><path d="M3 21V3a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v4"/></svg> },
 ];
 
-export function Sidebar({ onLogout }: { onLogout: () => void }) {
+export function Sidebar({ onLogout, onNavigate, activePanel }: { onLogout: () => void, onNavigate: (panel: string) => void, activePanel: string }) {
   return (
     <nav className={styles.sidebar} aria-label="Sidebar">
       <div className={styles["sidebar-logo"]}>
@@ -33,7 +33,13 @@ export function Sidebar({ onLogout }: { onLogout: () => void }) {
         <ul className={styles["sidebar-menu"]} role="menu">
           {menuItems.map((item) => (
             <li key={item.label} role="none">
-              <button className={styles["sidebar-menu-item"]} tabIndex={0} role="menuitem">
+              <button
+                className={styles["sidebar-menu-item"] + (activePanel === item.label ? ' ' + styles.active : '')}
+                tabIndex={0}
+                role="menuitem"
+                aria-current={activePanel === item.label ? 'page' : undefined}
+                onClick={() => onNavigate(item.label)}
+              >
                 <span className={styles["sidebar-menu-icon"]}>{item.icon}</span>
                 {item.label}
               </button>

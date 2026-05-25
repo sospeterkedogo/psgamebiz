@@ -6,10 +6,27 @@ import { DashboardMain } from "./components/DashboardMain";
 import { useState } from "react";
 import Login from "./components/Login";
 
+// Move ComingSoon above ClientPage
+function ComingSoon({ title }: { title: string }) {
+  return (
+    <div style={{ color: '#fff', background: '#222', borderRadius: 16, padding: 32, margin: 32, textAlign: 'center', fontSize: 24, fontWeight: 600 }}>
+      {title} — Coming Soon!
+    </div>
+  );
+}
+
 export default function ClientPage() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [activePanel, setActivePanel] = useState("Dashboard");
   if (!loggedIn) {
     return <Login onLogin={() => setLoggedIn(true)} />;
+  }
+  function renderPanel() {
+    if (activePanel === "Dashboard") return <DashboardMain />;
+    if (activePanel === "Transaction") return <ComingSoon title="Transaction" />;
+    if (activePanel === "Payment") return <ComingSoon title="Payment" />;
+    if (activePanel === "My Card") return <ComingSoon title="My Card" />;
+    return <DashboardMain />;
   }
   return (
     <div style={{ position: 'relative', minHeight: '100vh', width: '100vw', overflow: 'hidden', height: '100vh' }}>
@@ -23,27 +40,15 @@ export default function ClientPage() {
           style={{ objectFit: 'cover', objectPosition: 'center' }}
           priority
         />
-        {/* Simple overlay for depth */}
-        <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.6)' }} />
       </div>
-      <div style={{ display: 'flex', minHeight: '100vh', flexDirection: 'row', flexWrap: 'wrap' }} role="presentation">
-        <Sidebar onLogout={() => setLoggedIn(false)} />
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
-          <Topbar />
-          <DashboardMain />
+      {/* Main Content */}
+      <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'row', height: '100vh', minHeight: 0 }}>
+        <Sidebar activePanel={activePanel} setActivePanel={setActivePanel} />
+        <div style={{ flex: 1, minHeight: 0, margin: 0, padding: 0, overflow: 'auto', display: 'flex', flexDirection: 'column' }}>
+          <Topbar onLogout={() => setLoggedIn(false)} />
+          {renderPanel()}
         </div>
       </div>
-      <style>{`
-        @media (max-width: 900px) {
-          .sidebar { width: 100vw !important; min-width: 0 !important; }
-          .topbar { flex-direction: column; align-items: flex-start; }
-        }
-        @media (max-width: 600px) {
-          .sidebar { width: 100vw !important; min-width: 0 !important; }
-          .topbar { flex-direction: column; align-items: flex-start; }
-          main { padding: 8px !important; }
-        }
-      `}</style>
     </div>
   );
 }
