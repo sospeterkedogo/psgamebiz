@@ -43,7 +43,7 @@ export default function ClientPage() {
       </div>
       {/* Main Content */}
       <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'row', height: '100vh', minHeight: 0 }}>
-        <Sidebar activePanel={activePanel} setActivePanel={setActivePanel} />
+        <Sidebar activePanel={activePanel} onNavigate={setActivePanel} onLogout={() => setLoggedIn(false)} />
         <div style={{ flex: 1, minHeight: 0, margin: 0, padding: 0, overflow: 'auto', display: 'flex', flexDirection: 'column' }}>
           <Topbar onLogout={() => setLoggedIn(false)} />
           {renderPanel()}
