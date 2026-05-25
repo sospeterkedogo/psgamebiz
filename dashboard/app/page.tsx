@@ -1,10 +1,24 @@
-import styles from "./page.module.css";
+
+import Image from "next/image";
 
 export default function Dashboard() {
   return (
-    <div className="flex min-h-screen bg-gray-100">
+    <div className="relative min-h-screen w-full overflow-hidden">
+      {/* Hero Background Image */}
+      <div className="absolute inset-0 -z-10">
+        <Image
+          src="/images/ps5landscapewallpaper.jpg"
+          alt="Hero Background"
+          fill
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
+          priority
+        />
+        {/* Dark overlay for depth and techy/gaming look */}
+        <div className="absolute inset-0 bg-black/70" />
+      </div>
+      <div className="flex min-h-screen">
       {/* Sidebar */}
-      <aside className="w-72 bg-gradient-to-b from-gray-900 to-gray-800 text-white flex flex-col p-6">
+      <aside className="w-72 bg-gradient-to-b from-gray-900 to-gray-800 text-white flex flex-col p-6 bg-opacity-90 backdrop-blur-md">
         <div className="flex items-center gap-3 mb-8">
           <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
             {/* Logo Placeholder */}
@@ -35,7 +49,7 @@ export default function Dashboard() {
         </div>
       </aside>
       {/* Main Content */}
-      <main className="flex-1 p-8">
+      <main className="flex-1 p-8 bg-transparent">
         <div className="flex justify-between items-center mb-8">
           <input type="text" placeholder="Search Here" className="px-4 py-2 rounded-lg border border-gray-300 w-80" />
           <div className="flex items-center gap-4">
@@ -108,6 +122,7 @@ export default function Dashboard() {
           </section>
         </div>
       </main>
+      </div>
     </div>
   );
 }

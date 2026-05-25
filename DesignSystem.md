@@ -35,3 +35,9 @@
 
 ## Layout
 - Grid-based, with clear separation of dashboard, records, and inventory
+
+
+
+
+
+
