@@ -3,13 +3,14 @@ import Image from "next/image";
 
 export default function Dashboard() {
   return (
-    <div className="relative min-h-screen w-full overflow-hidden">
+    <div className="relative min-h-screen w-full overflow-hidden h-screen">
       {/* Hero Background Image */}
-      <div className="absolute inset-0 -z-10">
+      <div className="absolute inset-0 -z-10 h-full w-full">
         <Image
           src="/images/ps5landscapewallpaper.jpg"
           alt="Hero Background"
           fill
+          sizes="100vw"
           style={{ objectFit: 'cover', objectPosition: 'center' }}
           priority
         />
