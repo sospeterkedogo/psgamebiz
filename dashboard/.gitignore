@@ -58,3 +58,5 @@ prettier.config.js
 # package files
 
 package-lock.json
+.vercel
+.env*
